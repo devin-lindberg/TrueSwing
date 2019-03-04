@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC4XnLCjee3yMg1lgrp4z7St3XoIu2iU4g",
+            authDomain: "golfapp-ebf4e.firebaseapp.com",
+            databaseURL: "https://golfapp-ebf4e.firebaseio.com",
+            projectId: "golfapp-ebf4e",
+            storageBucket: "golfapp-ebf4e.appspot.com",
+            messagingSenderId: "759095177682"
+        };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();
+    </script>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.8.3/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.8.3/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.8.3/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.8.3/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.8.3/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-image"></div>
+    <h1>True Swing</h1>
+    <p id="date"> </p>
+
+    <!-- <div class="content">
+      
+      <ul id="cafe-list" ></ul>
+    </div> -->
+
+
+
+    <button class="signOn" onclick="logOut()"> Log Out</button>
+
+    <div class="table-responsive">
+        <table class="table table-bordered scorecard" style="text-align: center;">
+            <tbody>
+                <tr class="date">
+                    <td style="font-weight: bold">Enter Date for Round:</td>
+                    <td><input type="date" id="myDate"></td>
+                    <td id="course"><span style="border-right-width: medium">Asheville Municipal Golf Course </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered scorecard" style="text-align: center;">
+            <tbody>
+                <tr class="warning">
+                    <td style="font-weight: bold">Hole</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>OUT</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                    <td>IN</td>
+                    <td>Total</td>
+                </tr>
+                <tr class="champyrds">
+                    <td style="font-weight: bold">Blue</td>
+                    <td>384</td>
+                    <td>474</td>
+                    <td>268</td>
+                    <td>536</td>
+                    <td>414</td>
+                    <td>169</td>
+                    <td>404</td>
+                    <td>190</td>
+                    <td>403</td>
+                    <td>3246</td>
+                    <td>288</td>
+                    <td>374</td>
+                    <td>346</td>
+                    <td>367</td>
+                    <td>504</td>
+                    <td>216</td>
+                    <td>340</td>
+                    <td>491</td>
+                    <td>222</td>
+                    <td>3246</td>
+                    <td>6394</td>
+                </tr>
+                <tr class="regyrds">
+                    <td style="font-weight: bold">White</td>
+                    <td>342</td>
+                    <td>456</td>
+                    <td>257</td>
+                    <td>497</td>
+                    <td>396</td>
+                    <td>152</td>
+                    <td>388</td>
+                    <td>165</td>
+                    <td>338</td>
+                    <td>2991</td>
+                    <td>262</td>
+                    <td>353</td>
+                    <td>327</td>
+                    <td>344</td>
+                    <td>475</td>
+                    <td>189</td>
+                    <td>327</td>
+                    <td>459</td>
+                    <td>212</td>
+                    <td>3352</td>
+                    <td>6505</td>
+                </tr>
+                <tr class="senior">
+                    <td style="font-weight: bold">Gold</td>
+                    <td>272</td>
+                    <td>392</td>
+                    <td>247</td>
+                    <td>428</td>
+                    <td>341</td>
+                    <td>141</td>
+                    <td>332</td>
+                    <td>126</td>
+                    <td>267</td>
+                    <td>2546</td>
+                    <td>246</td>
+                    <td>249</td>
+                    <td>281</td>
+                    <td>330</td>
+                    <td>423</td>
+                    <td>163</td>
+                    <td>293</td>
+                    <td>396</td>
+                    <td>183</td>
+                    <td>2564</td>
+                    <td>5110</td>
+                </tr>
+                <tr class="par">
+                    <td style="font-weight: bold">Par</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>36</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>36</td>
+                    <td>72</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold"><input type="text" id="P1"
+                            onblur="document.getElementById('P1').style.border = '0';" style="text-align: center"
+                            onkeypress="return alphaOnly(event)"></td>
+                    <td><input type="text" id="P1H1" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H1').style.border = '0';"></td>
+                    <td><input type="text" id="P1H2" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H2').style.border = '0';"></td>
+                    <td><input type="text" id="P1H3" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H3').style.border = '0';"></td>
+                    <td><input type="text" id="P1H4" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H4').style.border = '0';"></td>
+                    <td><input type="text" id="P1H5" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H5').style.border = '0';"></td>
+                    <td><input type="text" id="P1H6" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H6').style.border = '0';"></td>
+                    <td><input type="text" id="P1H7" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H7').style.border = '0';"></td>
+                    <td><input type="text" id="P1H8" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H8').style.border = '0';"></td>
+                    <td><input type="text" id="P1H9" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H9').style.border = '0';"></td>
+                    <td><input type="text" id="P1OUT" class="golfinput" style="border: 0;"></td>
+                    <td><input type="text" id="P1H10" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H10').style.border = '0';"></td>
+                    <td><input type="text" id="P1H11" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H11').style.border = '0';"></td>
+                    <td><input type="text" id="P1H12" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H12').style.border = '0';"></td>
+                    <td><input type="text" id="P1H13" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H13').style.border = '0';"></td>
+                    <td><input type="text" id="P1H14" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H14').style.border = '0';"></td>
+                    <td><input type="text" id="P1H15" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H15').style.border = '0';"></td>
+                    <td><input type="text" id="P1H16" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H16').style.border = '0';"></td>
+                    <td><input type="text" id="P1H17" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H17').style.border = '0';"></td>
+                    <td><input type="text" id="P1H18" class="golfinput" onkeyup="mySum();"
+                            onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                            onblur="document.getElementById('P1H18').style.border = '0';"></td>
+                    <td><input type="text" id="P1IN" class="golfinput" style="border: 0;"></td>
+                    <td><input type="text" id="P1total" class="golfinput" style="border: 0;"></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+body {
+    background: url(golf_background.jpg);
+    background-size: cover;
+    background-position: center; 
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    font-family: "Lato";
+    color: rgb(255, 255, 255);
+}
+
+h1 {
+	font-weight: 700;
+    font-size: 5em;
+    text-align: center;
+    background-color: azure;
+}
+.signOn{
+background-color: blue;
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+}
+
+p{
+    text-align: center;
+    color: WHITE;
+}
+
+
+.table {
+    background-color: #fff;
+    font-family: 'Expletus Sans', cursive;
+    color: #000000;
+    margin: 0 auto;
+}
+.champyrds {
+    background-color: blue;
+}
+
+.regyrds {
+    background-color: white;
+    
+}
+
+.senior {
+    background-color: gold;
+}
+
+.par {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+
+.date{
+    background-color: antiquewhite;
+    font-size: 18px;
+    
+}
+
+.warning {
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.holesmap {
+    margin-bottom: 50px;
+}
+
+.btn {
+    font-size: 15px;
+}
+
+.golfinput {
+    width: 30px;
+    text-align: center;
+}
+
+.scorecard {
+    width: 1250px;
+    margin-bottom: 50px;
+}
+  @media screen and (min-width: 80em) {
+    .front9, .back9 {
+      display: inline-block;
+    }
+    .back9 span:first-child {
+      display: none;
+    }
+  }
+	
