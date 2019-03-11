@@ -42,22 +42,28 @@
 
    <body>
     <div class="bg-image"></div>
-    <h1>True Swing. You are logged in. </h1>
+    <div class="header">
+        <a href="#default" class="logo">TrueSwing</a>
+        <div class="header-right">
+          <a class="active" href="index.html">Home</a>
+          <a href="municipal.html">Asheville Municipal Golf Course</a>
+          <a href="blackmtn.html">Black Mountain Golf Course</a>
+          <a href="reemscreek.html">Reems Creek Golf Club</a>
+          <a href="broadmoor.html">Broadmoor Golf Links</a>
+        </div>
+      </div>
 
     <!-- <div class="content">
       
       <ul id="cafe-list" ></ul>
     </div> -->
 
-    <button class="signOn" onclick="googleLogin()">
-      Login With Google
-    </button>
 
     <button class="signOn" onclick="logOut()"> Log Out</button>
 
     
 
-    <form class="form-inline">
+    <!-- <form class="form-inline">
       <label class="sr-only" for="inlineFormInputName2">User Name</label>
       <input type="text" class="form-control mb-2 mr-sm-2" id="userName" placeholder="User Name">
       
@@ -94,7 +100,7 @@
         <option value="sand_wedge">Sand Wedge</option>
         <option value="lob_wedge">Lob Wedge</option>
       </select>
-       <button type="button" onclick="getBagSetup()"> Submit Bag Setup</button>
+       <button type="button" onclick="getBagSetup()"> Submit Bag Setup</button> -->
 
     <script src="app.js"></script>
    </body>
