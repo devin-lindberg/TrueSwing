@@ -1,12 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Welcome to Firebase Hosting</title>
-
-  <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>TrueSwing</title>
+</head>
+<body class="grey lighten-3">
+  <!-- NAVBAR -->
+  <nav class="z-depth-0 grey lighten-4">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">
+        <img src="download.jpg" style="width: 180px; margin-top: 10px;">
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+          </li>
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="grey-text" id="logout">Logout</a>
+          </li>
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-create">New Round</a>
+          </li>
+          <li class="logged-out" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+          </li>
+          <li class="logged-out" style="display: none;">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+          </li>
+        </ul>
+    </div>
+  </nav>
+  <!-- SIGN UP MODAL -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <div class="input-field">
+          <input type="text" id="signup-userName" required />
+          <label for="signup-userName">User Name</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
+  </div>
+  <!-- LOGIN MODAL -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+    </div>
+  </div>
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+      <div class="account-extras"></div>
+    </div>
+  </div>
+  <!-- CREATE ROUND MODAL -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Create Guide</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="title" required>
+          <label for="title">Date of Round</label>
+        </div>
+        <div class="input-field col s12">
+          <select id="golfCourse">
+            <option value="" disabled selected>Choose your course</option>
+            <option value="Asheville Municipal Golf Course">Asheville Municipal Golf Course</option>
+            <option value="Black Mountain Golf Course">Black Mountain Golf Course</option>
+            <option value="Reems Creek Golf Club">Reems Creek Golf Club</option>
+            <option value="Broadmoor Golf Links">Broadmoor Golf Links</option>
+          </select>
+          <label>Materialize Select</label>
+        </div>
+        <div class="input-field">
+          <textarea id="content" class="materialize-textarea" required></textarea>
+          <label for="content">Score</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Log Round</button>
+      </form>
+    </div>
+  </div>
+  <!-- ROUND LIST -->
+  <div class="container" style="margin-top: 40px;">
+    <ul class="collapsible z-depth-0 guides" style="border: none;">
+      
+    </ul>
+  </div>
+  
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -18,74 +129,14 @@
       messagingSenderId: "759095177682"
     };
     firebase.initializeApp(config);
+    const auth = firebase.auth();
     const db = firebase.firestore();
-  </script>
 
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/5.8.3/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/5.8.3/firebase-auth.js"></script>
-  <script defer src="/__/firebase/5.8.3/firebase-database.js"></script>
-  <script defer src="/__/firebase/5.8.3/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/5.8.3/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
-  <link rel="stylesheet" type="text/css" href="app.css">
-  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-  <div class="bg-image"></div>
-  <div class="header">
-    <a href="#default" class="logo">TrueSwing</a>
-    <div class="header-right">
-      <a class="active" href="index.html">Home</a>
-      <a href= "register.html">Register</a>
-      <a href="#about">About</a>
-    </div>
-  </div>
-
-  <p id="userInfo"> USer Info HEre</p>
-
-
-  <div class="content">
-
-    <ul id="cafe-list"></ul>
-  </div>
-
-  <!-- <button class="signOn" onclick="googleLogin()">
-    Login With Google
-  </button>
-  <button class="signOn" onclick="logOut()"> Log Out</button> -->
-  <div class="container">
-      <h2>Login</h2>
-      <p>Make the viewport larger than 768px wide to see that all of the form elements are inline, left aligned, and the labels are alongside.</p>
-      <form class="form-inline">
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-        </div>
-        <div class="form-group">
-          <label for="pwd">Password:</label>
-          <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-        </div>
-        <button type="submit" onclick='signIn(); return false;' class="btn btn-default">Submit</button>
-      </form>
-    </div>
-
-
-      
-
-
-  <script src="app.js"></script>
+    db.settings({ timestampsInSnapshots: true });
+    </script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="auth.js"></script>
+  <script src="index.js"></script>
 </body>
-
 </html>

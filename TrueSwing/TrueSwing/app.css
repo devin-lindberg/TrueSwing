@@ -1,8 +1,18 @@
 body {
-    background: url(golf_background.jpg);
+    background: url(golfBackground.jpg);
     background-size: cover;
     background-position: center; 
+    image-rendering: crisp-edges;
 }
+
+   
+    .rgba-gradient {
+      background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+      background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%));
+      background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+    }
+    
+   
 
 body,
 html {
@@ -17,7 +27,7 @@ h1 {
     font-size: 5em;
     text-align: center;
     background-color: azure;
-}
+} 
 
 .container{
     background-color: grey;
@@ -35,8 +45,9 @@ font-size: 16px;
 
 p{
     text-align: center;
-    color: WHITE;
+    color: red;
 }
+
 
 
 .table {
@@ -109,7 +120,7 @@ p{
   }
   
   /* Style the header links */
-  .header a {
+   .header a {
     float: left;
     color: black;
     text-align: center;
@@ -118,19 +129,19 @@ p{
     font-size: 18px; 
     line-height: 25px;
     border-radius: 4px;
-  }
+  } */
   
   /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-  .header a.logo {
+ .header a.logo {
     font-size: 25px;
     font-weight: bold;
-  }
+  } 
   
   /* Change the background color on mouse-over */
   .header a:hover {
     background-color: #ddd;
     color: black;
-  }
+  } 
   
   /* Style the active/current link*/
   .header a.active {
@@ -153,5 +164,5 @@ p{
     .header-right {
       float: none;
     }
-  }
-
+  } 
+ 
