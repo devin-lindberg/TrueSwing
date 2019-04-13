@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC4XnLCjee3yMg1lgrp4z7St3XoIu2iU4g",
+    authDomain: "golfapp-ebf4e.firebaseapp.com",
+    databaseURL: "https://golfapp-ebf4e.firebaseio.com",
+    projectId: "golfapp-ebf4e",
+    storageBucket: "golfapp-ebf4e.appspot.com",
+    messagingSenderId: "759095177682"
+  };
+  firebase.initializeApp(config);
+  const db = firebase.firestore();
+  </script>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.8.3/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.8.3/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.8.3/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.8.3/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.8.3/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css">    
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   </head>
+
+   <body>
+    <div class="bg-image"></div>
+    <div class="header">
+        <a href="#default" class="logo">TrueSwing</a>
+        <div class="header-right">
+          <a class="active" href="index.html">Home</a>
+          <a href="municipal.html">Asheville Municipal Golf Course</a>
+          <a href="blackmtn.html">Black Mountain Golf Course</a>
+          <a href="reemscreek.html">Reems Creek Golf Club</a>
+          <a href="broadmoor.html">Broadmoor Golf Links</a>
+        </div>
+      </div>
+
+    <!-- <div class="content">
+      
+      <ul id="cafe-list" ></ul>
+    </div> -->
+
+
+    <button class="signOn" onclick="logOut()"> Log Out</button>
+
+    
+
+    <!-- <form class="form-inline">
+      <label class="sr-only" for="inlineFormInputName2">User Name</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" id="userName" placeholder="User Name">
+      
+      <label class="sr-only" for="first">First Name</label>
+      <input type="text" class="form-control" id="first" placeholder="first name">
+
+      <label class="sr-only" for="inlineFormInputGroupUsername2">:Last Name</label>
+      <input type="text" class="form-control" id="last" placeholder="last name">
+      
+      <label class="sr-only" for="inlineFormInputGroupUsername2">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="email">
+
+      <label class="sr-only" for="inlineFormInputGroupUsername2">Age</label>
+      <input type="text" class="form-control" id="age" placeholder="25">
+              
+      <button type="button" class="btn btn-primary mb-2" onclick="getUserInfo()">
+        Submit
+      </button>
+    </form>
+    
+    <select id="clubSelector" class="selectpicker" multiple data-live-search="true">
+        <option value="driver">Driver</option>
+        <option value="3_wood">3 wood</option>
+        <option value="5_wood">5 wood</option>
+        <option value="3_iron">3 iron</option>
+        <option value="4_iron">4 iron</option>
+        <option value="5_iron">5 iron</option>
+        <option value="6_iron">6 iron</option>
+        <option value="7_iron">7 iron</option>
+        <option value="8_iron">8 iron</option>
+        <option value="9_iron">9 iron</option>
+        <option value="pitching_wedge">Wedge</option>
+        <option value="gap_wedge">Gap Wedge</option>
+        <option value="sand_wedge">Sand Wedge</option>
+        <option value="lob_wedge">Lob Wedge</option>
+      </select>
+       <button type="button" onclick="getBagSetup()"> Submit Bag Setup</button> -->
+
+    <script src="app.js"></script>
+   </body>
+</html>
