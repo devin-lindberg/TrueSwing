@@ -2,28 +2,31 @@ var totalRight;
 var totalLeft;
 var totalStrike;
 
-// listen to auth state changes
+// listen to auth state changes of user.
 auth.onAuthStateChanged(user => {
+    //if user is logged in will setup screen with user information including previous rounds. 
     if (user) {
         db.collection('Users').doc(user.email).collection('Rounds').orderBy('date').onSnapshot(snapshot => {
-            setupGuides(snapshot.docs)
+            //setupAverage(spapshot.docs);
+            setupGuides(snapshot.docs);            
             setupUI(user);
         });
 
     }
+    // if no user is logged in. User will only have option to login or signup. 
     else {
         setupUI();
         setupGuides([]);
+        //setupAverage([]);
     }
 });
 
-//log round
+//Basic round log with just course name, date played, and score.
 const createForm = document.querySelector('#create-form');
 createForm.addEventListener('submit', (e) => {
     e.preventDefault();
     var user = firebase.auth().currentUser;
-    // console.log(user.uid);
-    
+   
     db.collection('Users').doc(user.email).collection('Rounds').doc().set({
         course: createForm['golfCourse'].value,
         date: createForm['title'].value,
@@ -35,35 +38,34 @@ createForm.addEventListener('submit', (e) => {
     });
 });
 
+
 // play muni modal advanved
 const modalPlay = document.querySelector('#roundData');
 modalPlay.addEventListener('submit', (e) => {
     e.preventDefault();
     var user = firebase.auth().currentUser;
     //must do operations here. then can write into DB
-    totalScore();
-    //GIR();
-    
-    var promise = FIR();
-     promise.then(function(totalRight){
-        db.collection('Users').doc(user.email).collection('Rounds').doc().set({
-            date: modalPlay['roundDate'].value,
-            //score: totalScore,
-            totalright: totalRight
-            }).then(() => {
-            const modal = document.querySelector('#modal-play');
-            M.Modal.getInstance(modal).close();
-            modalPlay.reset();
-        }).catch(function(error){
-            console.log(error);
-        })  
-     })         
- 
+    // log advanced statistics here.
+    db.collection('Users').doc(user.email).collection('Rounds').doc().set({
+        date: modalPlay['roundDate'].value,
+        course: "Asheville Municipal Golf Course",
+        score: totalScore(),
+        totalFairway: FIR(),
+        greens: GIR(),
+        putts: totalPutts()
+    }).then(() => {
+        const modal = document.querySelector('#modal-play');
+        M.Modal.getInstance(modal).close();
+        modalPlay.reset();
+    }).catch(function (error) {
+        console.log(error);
+    })
 });
 
 
-function totalPutts(){
-    totalPutts = parseInt(modalPlay['P1H1'].value)
+// Calculate total putts for round
+function totalPutts() {
+    var totalPutts = parseInt(modalPlay['P1H1'].value)
         + parseInt(modalPlay['P1H2'].value)
         + parseInt(modalPlay['P1H3'].value)
         + parseInt(modalPlay['P1H4'].value)
@@ -88,7 +90,7 @@ function totalPutts(){
 
 /// calculate total score
 function totalScore() {
-    totalScore = parseInt(modalPlay['H1'].value)
+    var totalScore = parseInt(modalPlay['H1'].value)
         + parseInt(modalPlay['H2'].value)
         + parseInt(modalPlay['H3'].value)
         + parseInt(modalPlay['H4'].value)
@@ -110,79 +112,124 @@ function totalScore() {
     return totalScore;
 }
 
+//Calculate Greens in Regulation for round. 
 function GIR() {
-    var totalGreens = modalPlay['GIR1'];
-    if(totalGreens.checked == true){
-        console.log("truee");
+    var totalGreens = [
+        parseInt(modalPlay['GIR1'].value),
+        parseInt(modalPlay['GIR2'].value),
+        parseInt(modalPlay['GIR3'].value),
+        parseInt(modalPlay['GIR4'].value),
+        parseInt(modalPlay['GIR5'].value),
+        parseInt(modalPlay['GIR6'].value),
+        parseInt(modalPlay['GIR7'].value),
+        parseInt(modalPlay['FIR8'].value),
+        parseInt(modalPlay['GIR9'].value),
+        parseInt(modalPlay['GIR10'].value),
+        parseInt(modalPlay['GIR11'].value),
+        parseInt(modalPlay['GIR12'].value),
+        parseInt(modalPlay['GIR13'].value),
+        parseInt(modalPlay['GIR14'].value),
+        parseInt(modalPlay['GIR15'].value),
+        parseInt(modalPlay['GIR16'].value),
+        parseInt(modalPlay['GIR17'].value),
+        parseInt(modalPlay['GIR18'].value)
+    ];
+    var gir = 0;
+    for (i = 0; i <= totalGreens.length; i++) {
+        if (totalGreens[i] == 1) {
+            gir += 1;
+        } 
     }
-    else{
-        console.log("false");
-    }    
-    
+    var greenString = gir + "/18";
+    console.log(greenString);
+    return greenString;
 }
 
+
+//calculate Fairways in Reglation
 function FIR() {
-    return new Promise(function(resolve, reject){
-        var fairway = [
-            parseInt(modalPlay['FIR1'].value),
-            parseInt(modalPlay['FIR2'].value),
-            parseInt(modalPlay['FIR3'].value),
-            parseInt(modalPlay['FIR5'].value),
-            parseInt(modalPlay['FIR7'].value),
-            parseInt(modalPlay['FIR8'].value),
-            parseInt(modalPlay['FIR9'].value),
-            parseInt(modalPlay['FIR10'].value),
-            parseInt(modalPlay['FIR11'].value),
-            parseInt(modalPlay['FIR12'].value),
-            parseInt(modalPlay['FIR14'].value),
-            parseInt(modalPlay['FIR15'].value),
-            parseInt(modalPlay['FIR16'].value),
-            parseInt(modalPlay['FIR17'].value),
-            parseInt(modalPlay['FIR18'].value)];
-        
-            console.log(fairway.toString());
-            console.log(fairway.length);
-            var missRight = 0;
-            var fairwayStrike = 0;
-            var missLeft = 0;
-            for (i = 0; i <= fairway.length; i++) {
-                // miss right
-                if (fairway[i] == 1) {
-                    missRight += 1;
-                }
-                //check Fairway Hit
-                if (fairway[i] == 2) {
-                    fairwayStrike += 1;
-                }
-                //miss left
-                if (fairway[i] == 3) {
-                    missLeft += 1;
-                }
-            }
-            console.log(missRight + " " +  fairwayStrike + " " + missLeft  + "");
-        
-            var totalRight = missRight * 100 / fairway.length;
-            var totalStrike = fairwayStrike * 100 / fairway.length;
-            var totalLeft = missLeft * 100 / fairway.length;
-            console.log(totalRight.toFixed(0) + " You hit: " + totalStrike.toFixed(0) + " " + totalLeft.toFixed(0) + " " );  
-           
-            if(totalRight > 0){
-                resolve(totalRight);
-                return totalRight;
-            } else {
-                reject("not defined");
-            }      
-    });
-    
+    //store results for each shot into array
+    var fairway = [
+        parseInt(modalPlay['FIR1'].value),
+        parseInt(modalPlay['FIR2'].value),
+        parseInt(modalPlay['FIR3'].value),
+        parseInt(modalPlay['FIR5'].value),
+        parseInt(modalPlay['FIR7'].value),
+        parseInt(modalPlay['FIR8'].value),
+        parseInt(modalPlay['FIR9'].value),
+        parseInt(modalPlay['FIR10'].value),
+        parseInt(modalPlay['FIR11'].value),
+        parseInt(modalPlay['FIR12'].value),
+        parseInt(modalPlay['FIR14'].value),
+        parseInt(modalPlay['FIR15'].value),
+        parseInt(modalPlay['FIR16'].value),
+        parseInt(modalPlay['FIR17'].value),
+        parseInt(modalPlay['FIR18'].value)
+    ];
+    //Check for fairway variance of each shot and store either hit, leftMiss, rightMiss
+    var missRight = 0;
+    var fairwayStrike = 0;
+    var missLeft = 0;
+    for (i = 0; i <= fairway.length; i++) {
+        // miss right
+        if (fairway[i] == 1) {
+            missRight += 1;
+        }
+        //check Fairway Hit
+        if (fairway[i] == 2) {
+            fairwayStrike += 1;
+        }
+        //miss left
+        if (fairway[i] == 3) {
+            missLeft += 1;
+        }
+    }
+    console.log(missRight + " " + fairwayStrike + " " + missLeft + "");
+
+    // var totalRight = missRight * 100 / fairway.length;
+    // var totalStrike = fairwayStrike * 100 / fairway.length;
+    // var totalLeft = missLeft * 100 / fairway.length;
+    // console.log(totalRight.toFixed(0) + " You hit: " + totalStrike.toFixed(0) + " " + totalLeft.toFixed(0) + " " );  
+    // var fairwayString = "Miss Right:%" + totalRight.toFixed(0) + " Fairways Hit:%" + totalStrike.toFixed(0) + " Miss Right:% " + missRight.toFixed(0);
+
+    // Store Fairway Variance for round in String
+    var fairwayString = "Missed Right:" + missRight + "/15 ," + " Fairways Hit: " + fairwayStrike + "/15 ," + " Missed Left:" + missLeft + "/15";
+
+    return fairwayString;
+
 }
 
+// //Reset Password
+// const resetPassForm = document.querySelector('#reset-form')
+// resetPassForm.addEventListener('click',  (e) => {
+//     e.preventDefault();
+//     getEmail();
+//     console.log(emailAddress);
+//     var auth = firebase.auth();    
+//     auth.sendPasswordResetEmail(emailAddress).then(function() {
+//     // Email sent.
+//     alert('reset link sent to provided email address');
+//     console.log("email sent");
+//     }).catch(function(error) {
+//     // An error happened.
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//     if(errorCode =='auth/invalid-email'){
+//         alert(errorMessage);
+//     }else if(errorCode == 'auth/user-not-found'){
+//         alert(errorMessage);
+//     }
+//     console.log(error);
+//     });
+// });
 
-
-
+function getEmail(){
+    const emailAddress = resetPassForm['password-reset'].value;
+}
 
 // signup
 const signupForm = document.querySelector('#signup-form');
-signupForm.addEventListener('submit', (e) => {
+signupForm.addEventListener('submit',  (e) => {
     e.preventDefault();
 
     //get user info

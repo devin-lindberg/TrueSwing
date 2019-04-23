@@ -6,39 +6,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="mobile.css">
   <title>TrueSwing</title>
+  <style>
+    @media only screen and (max-width: 640px) {
+
+      /* For mobile phones: */
+      table {
+        overflow-x: auto;
+        display: block;
+      }
+    }
+  </style>
 </head>
+
 <body class="grey lighten-3">
   <!-- NAVBAR -->
-  <nav class="z-depth-0 grey lighten-4">
+  <nav class="z-depth-0 light-blue darken-4">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">
+      <a class="brand-logo">
         <img src="download.jpg" style="width: 180px; margin-top: 10px;">
       </a>
-      <a href="#" class="brand-logo">TrueSwing</a>
+      <a class="brand-logo">TrueSwing</a>
+      <a class="sidenav-trigger" data-target="mobile-links">
+        <i class="material-icons large black-text">menu</i>
+      </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="logged-in" style="display: none;">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+          <a class="grey-text modal-trigger" data-target="modal-account">Account</a>
         </li>
         <li class="logged-in" style="display: none;">
-          <a href="#" class="grey-text" id="logout">Logout</a>
+          <a class="grey-text" id="logout">Logout</a>
         </li>
         <li class="logged-in" style="display: none;">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-create">New Round</a>
+          <a class="grey-text modal-trigger" data-target="modal-create">Log Round</a>
         </li>
         <li class="logged-in" style="display: none;">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-play">Play Muni</a>
+          <a class="grey-text modal-trigger" data-target="modal-play">Play Muni</a>
         </li>
         <li class="logged-out" style="display: none;">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+          <a class="grey-text modal-trigger" data-target="modal-login">Login</a>
         </li>
         <li class="logged-out" style="display: none;">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+          <a class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
         </li>
       </ul>
     </div>
-  </nav> 
+  </nav>
+
+  <ul class="sidenav" id="mobile-links">
+    <li class="logged-in" style="display: none;">
+      <a class="grey-text modal-trigger" data-target="modal-account">Account</a>
+    </li>
+    <li class="logged-in" style="display: none;">
+        <a class="grey-text" id="logout">Logout</a>
+    </li>
+    <li class="logged-in" style="display: none;">
+      <a  class="grey-text modal-trigger" data-target="modal-create">Standard Round</a>
+    </li>
+    <li class="logged-in" style="display: none;">
+      <a class="grey-text modal-trigger" data-target="modal-play">Play Muni</a>
+    </li>
+    <li class="logged-out" style="display: none;">
+      <a class="grey-text modal-trigger" data-target="modal-login">Login</a>
+    </li>
+    <li class="logged-out" style="display: none;">
+      <a class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+    </li>
+  </ul>
 
   <!-- SIGN UP MODAL -->
   <div id="modal-signup" class="modal">
@@ -46,11 +83,11 @@
       <h4>Sign up</h4><br />
       <form id="signup-form">
         <div class="input-field">
-          <input type="email" id="signup-email" required />
+          <input type="email" autocomplete="email" id="signup-email" required />
           <label for="signup-email">Email address</label>
         </div>
         <div class="input-field">
-          <input type="password" id="signup-password" required />
+          <input type="password" autocomplete="password" id="signup-password" required />
           <label for="signup-password">Choose password</label>
         </div>
         <div class="input-field">
@@ -68,37 +105,51 @@
       <h4>Login</h4><br />
       <form id="login-form">
         <div class="input-field">
-          <input type="email" id="login-email" required />
+          <input type="email" autocomplete="email" id="login-email" required />
           <label for="login-email">Email address</label>
         </div>
         <div class="input-field">
-          <input type="password" id="login-password" required />
+          <input type="password" autocomplete="password" id="login-password" required />
           <label for="login-password">Your password</label>
         </div>
         <button class="btn yellow darken-2 z-depth-0">Login</button>
         <p class="error pink-text center-align"></p>
+        <!-- <a class="modal-trigger waves-effect waves-light btn" href="#modal-reset">Reset Password</a> -->
       </form>
     </div>
   </div>
+  <!--Password Reset Modal-->
+  <!-- <div id="modal-reset" class="modal">
+    <div class="modal-content">
+      <h4>Password Reset</h4><br />
+      <form id="reset-form">
+        <div class="input-field">
+          <input type="text" autocomplete="email" id="password-reset" required />
+          <label for="password-reset">Email address</label>
+          <button type="button" class="modal-close waves-effect waves-light btn right">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div> -->
   <!-- ACCOUNT MODAL -->
   <div id="modal-account" class="modal">
     <div class="modal-content center-align">
       <h4>Account details</h4><br>
       <div class="account-details"></div>
       <div class="account-extras"></div>
-      <div class="accounr-extras"></div>
+      <div class="account-extras"></div>
     </div>
   </div>
   <!-- CREATE ROUND MODAL -->
   <div id="modal-create" class="modal">
     <div class="modal-content">
-      <h4>Create Guide</h4><br />
+      <h4>Log Round</h4><br />
       <form id="create-form">
         <div class="input-field">
           <input type="text" class="datepicker" id="title">
           <label for="title">Date of Round</label>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s8">
           <select id="golfCourse">
             <option value="" disabled selected>Choose your course</option>
             <option value="Asheville Municipal Golf Course">Asheville Municipal Golf Course</option>
@@ -106,7 +157,7 @@
             <option value="Reems Creek Golf Club">Reems Creek Golf Club</option>
             <option value="Broadmoor Golf Links">Broadmoor Golf Links</option>
           </select>
-          <label>Materialize Select</label>
+          <label>Course</label>
         </div>
         <div class="input-field">
           <textarea id="content" class="materialize-textarea" required></textarea>
@@ -127,45 +178,47 @@
     <div class="modal-content">
       <h4>Play a Round</h4>
       <form id="roundData">
-      <div class="table-responsive">
-        <table class="responsive-table" style="text-align: center;">
-          <tbody>
-            <tr class="date">
-              <td style="font-weight: bold">Enter Date for Round: <input type="text" class="datepicker" id="roundDate"></td>
-              <td id="course" style="font-weight: bold"><span style="border-right-width: medium" >Asheville Municipal Golf Course</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="responsive-table" style="text-align: center;">
-          <tbody>
-            <tr class="card-panel teal lighten-2">
-              <td style="font-weight: bold">Hole</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td>7</td>
-              <td>8</td>
-              <td>9</td>
-              <td>OUT</td>
-            </tr>       
-            <tr class="card-panel blue lighten-4">
-              <td style="font-weight: bold">Par</td>
-              <td>4</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>4</td>
-              <td>3</td>
-              <td>5</td>
-              <td>4</td>
-              <td>5</td>
-              <td>36</td>
-            </tr>
-            <tr>
+        <div class="table-responsive">
+          <table class="" style="text-align: center;">
+            <tbody>
+              <tr class="date">
+                <td style="font-weight: bold">Enter Date for Round: <input type="text" class="datepicker"
+                    id="roundDate"></td>
+                <td id="course" style="font-weight: bold"><span style="border-right-width: medium">Asheville Municipal
+                    Golf Course</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="" style="text-align: center;">
+            <tbody>
+              <tr class="card-panel teal lighten-2 s12">
+                <td style="font-weight: bold">Hole</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>OUT</td>
+              </tr>
+              <tr class="card-panel blue lighten-4">
+                <td style="font-weight: bold">Par</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>3</td>
+                <td>4</td>
+                <td>3</td>
+                <td>5</td>
+                <td>4</td>
+                <td>5</td>
+                <td>36</td>
+              </tr>
+              <tr>
                 <td style="font-weight: bold"> Score</td>
                 <td><input type="text" id="H1" class="golfinput" onkeyup="mySum()"
                     onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
@@ -195,8 +248,8 @@
                     onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
                     onblur="document.getElementById('H9').style.border = '0';"></td>
                 <td><input type="text" id="P1OUT" class="golfinput" style="border: 0;"></td>
-            </tr>
-            <tr id="FIR">
+              </tr>
+              <tr id="FIR">
                 <td style="font-weight: bold">Fairway</td>
                 <td>
                   <select class="input-field col s1" id="FIR1">
@@ -269,361 +322,300 @@
                     <option value="2">Fairway Hit</option>
                     <option value="3">Miss Left</option>
                   </select>
-                </td> 
-            </tr>
-            <tr>
+                </td>
+              </tr>
+              <tr>
                 <td style="font-weight: bold">GIR</td>
                 <td>
-                  <select class="input-field col s1" id="FIR7">
+                  <select class="input-field col s1" id="GIR1">
                     <option value="" disabled selected>GIR</option>
                     <option value="1">Yes</option>
                     <option value="2">No</option>
-                    </select>
-                </td>
-                </td>
-                <td>
-                  <div class="switch" id="GIR2">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  </select>
                 </td>
                 <td>
-                  <div class="switch" id="GIR3">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  <select class="input-field col s1" id="GIR2">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
                 </td>
                 <td>
-                  <div class="switch" id="GIR4">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  <select class="input-field col s1" id="GIR3">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
                 </td>
                 <td>
-                  <div class="switch" id="GIR5">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  <select class="input-field col s1" id="GIR4">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
                 </td>
                 <td>
-                  <div class="switch" id="GIR6">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  <select class="input-field col s1" id="GIR5">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
                 </td>
                 <td>
-                  <div class="switch" id="GIR7">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  <select class="input-field col s1" id="GIR6">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
                 </td>
                 <td>
-                  <div class="switch" id="GIR8">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  <select class="input-field col s1" id="GIR7">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
                 </td>
                 <td>
-                  <div class="switch" id="GIR9">
-                    <label>
-                      No
-                      <input type="checkbox">
-                      <span class="lever"></span>
-                      Yes
-                    </label>
-                  </div>
+                  <select class="input-field col s1" id="GIR8">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR9">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
                 </td>
                 <td></td>
               </tr>
-              <!-- <tr>
-                  <td style="font-weight: bold">Putts</td>
-                  <td><input type="text" id="H1P" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('H1P').style.border = '0';"></td>
-                  <td><input type="text" id="P1H2" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H2').style.border = '0';"></td>
-                  <td><input type="text" id="P1H3" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H3').style.border = '0';"></td>
-                  <td><input type="text" id="P1H4" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H4').style.border = '0';"></td>
-                  <td><input type="text" id="P1H5" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H5').style.border = '0';"></td>
-                  <td><input type="text" id="P1H6" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H6').style.border = '0';"></td>
-                  <td><input type="text" id="P1H7" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H7').style.border = '0';"></td>
-                  <td><input type="text" id="P1H8" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H8').style.border = '0';"></td>
-                  <td><input type="text" id="P1H9" class="golfinput" onkeyup="mySum();"
-                      onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                      onblur="document.getElementById('P1H9').style.border = '0';"></td>
-                  <td><input type="text" id="P1OUT" class="golfinput" style="border: 0;"></td>
-                </tr> -->
-                <tr class="card-panel teal lighten-2">
-                    <td style="font-weight: bold">Hole</td>
-                    <td>10</td>
-                    <td>11</td>
-                    <td>12</td>
-                    <td>13</td>
-                    <td>14</td>
-                    <td>15</td>
-                    <td>16</td>
-                    <td>17</td>
-                    <td>18</td>
-                    <td>IN</td>
-                    <td>Total</td>
-                  </tr>       
-            <tr class="card-panel blue lighten-4"> 
-              <td style="font-weight: bold">Par</td> 
-              <td>4</td>
-              <td>4</td>
-              <td>4</td>
-              <td>3</td>
-              <td>4</td>
-              <td>4</td>
-              <td>4</td>
-              <td>4</td>
-              <td>5</td>
-              <td>36</td>
-              <td>72</td>
-            </tr>
-            <tr>
-              <td style="font-weight: bold"> Score</td>
-              <td><input type="text" id="H10" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H10').style.border = '0';"></td>
-              <td><input type="text" id="H11" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H11').style.border = '0';"></td>
-              <td><input type="text" id="H12" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H12').style.border = '0';"></td>
-              <td><input type="text" id="H13" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H13').style.border = '0';"></td>
-              <td><input type="text" id="H14" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H14').style.border = '0';"></td>
-              <td><input type="text" id="H15" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H15').style.border = '0';"></td>
-              <td><input type="text" id="H16" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H16').style.border = '0';"></td>
-              <td><input type="text" id="H17" class="golfinput" 
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H17').style.border = '0';"></td>
-              <td><input type="text" id="H18" class="golfinput"
-                  onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
-                  onblur="document.getElementById('H18').style.border = '0';"></td>
-              <td><input type="text" id="P1IN" class="golfinput" style="border: 0;"></td>
-              <td><input type="text" id="P1total" class="golfinput" style="border: 0;"></td>
-            </tr>
-            <tr class="FIR">
-              <td style="font-weight: bold">Fairway</td>>
-              <td>
-                <select class="input-field col s1" id="FIR10">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-              <td>
-                <select class="input-field col s1" id="FIR11">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-              <td>
-                <select class="input-field col s1" id="FIR12">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-              <td>
-                <!-- <select class="input-field col s1" id="FIR13">
+              <tr>
+                <td style="font-weight: bold">Putts</td>
+                <td><input type="text" id="P1H1" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H1').style.border = '0';"></td>
+                <td><input type="text" id="P1H2" class="golfinput" onkeyup="mySum();" onkeypress="return isNumber(this
+                    ,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H2').style.border = '0';"></td>
+                <td><input type="text" id="P1H3" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H3').style.border = '0';"></td>
+                <td><input type="text" id="P1H4" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H4').style.border = '0';"></td>
+                <td><input type="text" id="P1H5" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H5').style.border = '0';"></td>
+                <td><input type="text" id="P1H6" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H6').style.border = '0';"></td>
+                <td><input type="text" id="P1H7" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H7').style.border = '0';"></td>
+                <td><input type="text" id="P1H8" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H8').style.border = '0';"></td>
+                <td><input type="text" id="P1H9" class="golfinput" onkeyup="mySum();"
+                    onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
+                    onblur="document.getElementById('P1H9').style.border = '0';"></td>
+                <td><input type="text" id="P1HOUT" class="golfinput" style="border: 0;"></td>
+              </tr>
+              <tr class="card-panel teal lighten-2">
+                <td style="font-weight: bold">Hole</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>IN</td>
+                <td>Total</td>
+              </tr>
+              <tr class="card-panel blue lighten-4">
+                <td style="font-weight: bold">Par</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>3</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>5</td>
+                <td>36</td>
+                <td>72</td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold"> Score</td>
+                <td><input type="text" id="H10" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H10').style.border = '0';"></td>
+                <td><input type="text" id="H11" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H11').style.border = '0';"></td>
+                <td><input type="text" id="H12" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H12').style.border = '0';"></td>
+                <td><input type="text" id="H13" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H13').style.border = '0';"></td>
+                <td><input type="text" id="H14" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H14').style.border = '0';"></td>
+                <td><input type="text" id="H15" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H15').style.border = '0';"></td>
+                <td><input type="text" id="H16" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H16').style.border = '0';"></td>
+                <td><input type="text" id="H17" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H17').style.border = '0';"></td>
+                <td><input type="text" id="H18" class="golfinput" onkeypress="return isNumber(this,event)" maxlength="2"
+                    min="1" max="99" onblur="document.getElementById('H18').style.border = '0';"></td>
+                <td><input type="text" id="P1IN" class="golfinput" style="border: 0;"></td>
+                <td><input type="text" id="P1total" class="golfinput" style="border: 0;"></td>
+              </tr>
+              <tr class="FIR">
+                <td style="font-weight: bold">Fairway</td>>
+                <td>
+                  <select class="input-field col s1" id="FIR10">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="FIR11">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="FIR12">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+                <td>
+                  <!-- <select class="input-field col s1" id="FIR13">
                   <option value="" disabled selected>FH</option>
                   <option value="1">Miss Right</option>
                   <option value="2">Fairway Hit</option>
                   <option value="3">Miss Left</option>
                 </select> -->
-              </td>
-              <td>
-                <select class="input-field col s1" id="FIR14">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-              <td>
-                <select class="input-field col s1" id="FIR15">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-              <td>
-                <select class="input-field col s1" id="FIR16">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-              <td>
-                <select class="input-field col s1" id="FIR17">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-              <td>
-                <select class="input-field col s1" id="FIR18">
-                  <option value="" disabled selected>FH</option>
-                  <option value="1">Miss Right</option>
-                  <option value="2">Fairway Hit</option>
-                  <option value="3">Miss Left</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td style="font-weight: bold">GIR</td>            
-              <td>
-                <div class="switch" id="GIR10">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR11">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR12">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR13">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR14">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR15">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR16">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR17">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-              <td>
-                <div class="switch" id="GIR18">
-                  <label>
-                    No
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                    Yes
-                  </label>
-                </div>
-              </td>
-            </tr>
-            <!-- <tr>
-                <td style="font-weight: bold">Putts</td>            
+                </td>
+                <td>
+                  <select class="input-field col s1" id="FIR14">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="FIR15">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="FIR16">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="FIR17">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="FIR18">
+                    <option value="" disabled selected>FH</option>
+                    <option value="1">Miss Right</option>
+                    <option value="2">Fairway Hit</option>
+                    <option value="3">Miss Left</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold">GIR</td>
+                <td>
+                  <select class="input-field col s1" id="GIR10">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR11">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR12">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR13">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR14">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR15">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR16">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR17">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="input-field col s1" id="GIR18">
+                    <option value="" disabled selected>GIR</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold">Putts</td>
                 <td><input type="text" id="P1H10" class="golfinput" onkeyup="mySum();"
                     onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
                     onblur="document.getElementById('P1H10').style.border = '0';"></td>
@@ -651,44 +643,67 @@
                 <td><input type="text" id="P1H18" class="golfinput" onkeyup="mySum();"
                     onkeypress="return isNumber(this,event)" maxlength="2" min="1" max="99"
                     onblur="document.getElementById('P1H18').style.border = '0';"></td>
-                <td><input type="text" id="P1IN" class="golfinput" style="border: 0;"></td>
-                <td><input type="text" id="P1total" class="golfinput" style="border: 0;"></td>
-                
-              </tr> -->
-              <button onclick="FIR()" class="btn yellow darken-2 z-depth-0">Log Round</button>
-              
-          </tbody>
-        </table>
-       </form> 
+                <td><input type="text" id="P1HIN" class="golfinput" style="border: 0;"></td>
+                <td><input type="text" id="P1Htotal" class="golfinput" style="border: 0;"></td>
+
+              </tr>
+              <button class="btn yellow darken-2 z-depth-0">Log Round</button>
+
+            </tbody>
+          </table>
+      </form>
+    </div>
+  </div>
+  </div>
+  <div class="carousel">
+    <a class="carousel-item" ><img src="course.jpg"></a>
+    <a class="carousel-item" ><img src="Black Mountain 100504 015.jpg"></a>    
+    <a class="carousel-item"><img src="background_app.jpg"></a>
+    <a class="carousel-item"><img src="golf.jpg"></a>
+    <a class="carousel-item"><img src="Municipal.jpg"></a>
+  </div>
+      
+    <footer class="footer" id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 s16">
+            <h5>TrueSwing</h5>
+            <p>Find your True Swing</p>
+          </div>
+        </div>
       </div>
-      </div>
-      </div>  
-     
+    </footer>
+  
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyC4XnLCjee3yMg1lgrp4z7St3XoIu2iU4g",
+      authDomain: "golfapp-ebf4e.firebaseapp.com",
+      databaseURL: "https://golfapp-ebf4e.firebaseio.com",
+      projectId: "golfapp-ebf4e",
+      storageBucket: "golfapp-ebf4e.appspot.com",
+      messagingSenderId: "759095177682"
+    };
+    firebase.initializeApp(config);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-
-      <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
-      <script>
-        // Initialize Firebase
-        var config = {
-          apiKey: "AIzaSyC4XnLCjee3yMg1lgrp4z7St3XoIu2iU4g",
-          authDomain: "golfapp-ebf4e.firebaseapp.com",
-          databaseURL: "https://golfapp-ebf4e.firebaseio.com",
-          projectId: "golfapp-ebf4e",
-          storageBucket: "golfapp-ebf4e.appspot.com",
-          messagingSenderId: "759095177682"
-        };
-        firebase.initializeApp(config);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        db.settings({ timestampsInSnapshots: true });
-      </script>
-      <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-      <script src="auth.js"></script>
-      <script src="index.js"></script>
-      <script src="app.js"></script>
+    db.settings({ timestampsInSnapshots: true });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.sidenav').sidenav();
+    });
+  </script>
+  <script src="auth.js"></script>
+  <script src="index.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>
